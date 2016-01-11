@@ -1,0 +1,29 @@
+---
+chain:
+  -
+    name: "get_permalink"
+    ref: "stackstorm.get_slack_message_permalink"
+    params:
+      channel: "{{channel}}"
+      timestamp: "{{timestamp}}"
+    publish:
+      url: "{{get_permalink.result}}"
+    on-success: "get_github_url_data"
+  -
+    name: "get_github_url_data"
+    ref: "stackstorm.get_github_url_data"
+    params:
+      text: "{{text}}"
+    publish:
+      user: "{{get_github_url_data.result.user}}"
+      repo: "{{get_github_url_data.result.repo}}"
+      issue: "{{get_github_url_data.result.issue}}"
+    on-success: "crosslink_slack_to_github"
+  -
+    name: "crosslink_slack_to_github"
+    ref: "github.add_comment"
+    params:
+      user: "{{user}}"
+      repo: "{{repo}}"
+      issue: "{{issue}}"
+      body: "{{url}}"

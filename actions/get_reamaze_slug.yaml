@@ -1,0 +1,11 @@
+---
+name: 'get_reamaze_slug'
+runner_type: 'python-script'
+description: 'Given a message payload from Slack, grab the re:amaze conversation info'
+enabled: true
+entry_point: 'script/get_reamaze_slug.py'
+parameters:
+  text:
+    type: "string"
+    description: "Text from Slack Trigger Payload"
+    required: true

@@ -1,0 +1,11 @@
+---
+name: 'sanitize_slack_message'
+runner_type: 'python-script'
+description: 'Given a message payload from Slack, get rid of all the nice furling they provide and get back to basics'
+enabled: true
+entry_point: 'script/sanitize_slack_message.py'
+parameters:
+  text:
+    type: "string"
+    description: "Raw input from Slack Sensor"
+    required: true

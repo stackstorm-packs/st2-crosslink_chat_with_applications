@@ -1,0 +1,11 @@
+---
+name: 'get_github_url_data'
+runner_type: 'python-script'
+description: 'Given a message payload from Slack, grab the GitHub Issue info'
+enabled: true
+entry_point: 'script/get_github_url_data.py'
+parameters:
+  text:
+    type: "string"
+    description: "Text from Slack Trigger Payload"
+    required: true

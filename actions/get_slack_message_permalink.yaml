@@ -1,0 +1,15 @@
+---
+name: 'get_slack_message_permalink'
+runner_type: 'python-script'
+description: 'Get a formatted archive URL from Slack trigger input'
+enabled: true
+entry_point: 'script/get_slack_message_permalink.py'
+parameters:
+  channel:
+    type: "string"
+    description: "Channel from Slack Trigger Payload"
+    required: true
+  timestamp:
+    type: "string"
+    description: "Timestamp from Slack Trigger Payload"
+    required: true

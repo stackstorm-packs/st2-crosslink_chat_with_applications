@@ -1,0 +1,34 @@
+---
+chain:
+  -
+    name: "get_permalink"
+    ref: "stackstorm.get_slack_message_permalink"
+    params:
+      channel: "{{channel}}"
+      timestamp: "{{timestamp}}"
+    publish:
+      permalink: "{{get_permalink.result}}"
+    on-success: "sanitize_message"
+  -
+    name: "sanitize_message"
+    ref: "stackstorm.sanitize_slack_message"
+    params:
+      text: "{{text}}"
+    publish:
+      sanitized_text: "{{sanitize_message.result}}"
+    on-success: "get_reamaze_slug"
+  -
+    name: "get_reamaze_slug"
+    ref: "stackstorm.get_reamaze_slug"
+    params:
+      text: "{{sanitized_text}}"
+    publish:
+      slug: "{{get_reamaze_slug.result.slug}}"
+    on-success: "crosslink_slack_to_reamaze"
+  -
+    name: "crosslink_slack_to_reamaze"
+    ref: "reamaze.create_message"
+    params:
+      slug: "{{slug}}"
+      message: "{{permalink}}"
+      visibility: "internal"

@@ -1,0 +1,23 @@
+---
+name: 'crosslink_slack_to_github'
+runner_type: 'action-chain'
+description: 'Given a message payload from Slack, find that message and post a permalink to history when it was discussed and post it to the mentioned issue'
+enabled: true
+entry_point: 'workflows/crosslink_slack_to_github.yaml'
+parameters:
+  user:
+    type: "string"
+    description: "User from Slack Trigger Payload"
+    required: true
+  channel:
+    type: "string"
+    description: "Channel from Slack Trigger Payload"
+    required: true
+  text:
+    type: "string"
+    description: "Text from Slack Trigger Payload"
+    required: true
+  timestamp:
+    type: "string"
+    description: "Timestamp from Slack Trigger Payload"
+    required: true
