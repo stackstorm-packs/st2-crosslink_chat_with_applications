@@ -1,7 +1,7 @@
 ---
 name: "crosslink-slack-to-reamaze"
 pack: "stackstorm"
-description: "This rule scans the Slack RTM for mentions of re:Amaze and creates an issue notification with a permalink between Slack History and mentioned issues"
+description: "This rule scans the Slack RTM for mentions of reamaze and creates an issue notification with a permalink between Slack History and mentioned issues"
 enabled: true
 trigger:
   type: "slack.message"
